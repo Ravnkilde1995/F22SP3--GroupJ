@@ -1,3 +1,0 @@
-Starttime: 13 Endtime: 16 Date: 12 Name: fodbold
-Starttime: 8 Endtime: 7 Date: 9 Name: bordforbold
-Starttime: 6 Endtime: 8 Date: 5 Name: fodbold
