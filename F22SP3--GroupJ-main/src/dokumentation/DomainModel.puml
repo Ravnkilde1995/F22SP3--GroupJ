@@ -1,0 +1,16 @@
+@startuml
+object Data.txt
+object Main
+object Tournament
+object Games
+object Teams
+object TextUI
+
+ Main --> Tournament
+ Tournament --> "7 " Games
+ Tournament --> Teams
+ Tournament --> TextUI
+ Teams --> Games
+ TextUI --> Data.txt
+ TextUI --> Main
+@enduml
