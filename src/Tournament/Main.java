@@ -12,13 +12,21 @@ public class Main {
         ArrayList<Teams> teams = new ArrayList<>();
         ArrayList<Match> matches = new ArrayList<>();
         ArrayList<Tournament> tournaments = new ArrayList<>();
+        ArrayList<Player> players = new ArrayList<>();
+
         DBConnection.createConnection();
 
-        TeamRepo teamRepo = new TeamRepo();
+        Menu.teamRepo = new TeamRepo();
         Teams testTeam = new Teams("ole", 4, 5,2);
-        teamRepo.create(testTeam);
-        teams = teamRepo.readAll();
+        Menu.teamRepo.create(testTeam);
+        teams = Menu.teamRepo.readAll();
         System.out.println(teams);
+
+        PlayerRepo playerRepo = new PlayerRepo();
+        Player testPlayer = new Player("Jane","Doe",30);
+        playerRepo.create(testPlayer);
+        players = playerRepo.readAll();
+        System.out.println(players);
 
         FileIOTeams teamsIO = new FileIOTeams();
         teams=teamsIO.loadData();

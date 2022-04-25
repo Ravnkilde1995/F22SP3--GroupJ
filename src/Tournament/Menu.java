@@ -9,6 +9,7 @@ public class Menu {
     //Fields
     //**********
    static ArrayList<Teams> teamsInTournament = new ArrayList<Teams>();
+   static TeamRepo teamRepo;
 
    public static void mainMenu(Scanner input, ArrayList<Teams> teams, ArrayList<Match> matches, ArrayList<Tournament> tournaments) {
 
@@ -52,6 +53,7 @@ public class Menu {
             System.out.println("Press 2 to assign points to team");
             System.out.println("Press 3 to assign goals and negative goals to team");
             System.out.println("Press 4 to show all teams assigned to tournament");
+            System.out.println("Press 5 to delete a team");
             System.out.println("Press 0 to return to main menu");
 
             answer = input.nextInt();
@@ -69,6 +71,8 @@ public class Menu {
                 case 4:
                     showAllTeams(teams);
                     break;
+                case 5:
+                    deleteTeam(input, teams);
                 case 0:
                     System.out.println("returning to main menu...");
                     break;
@@ -153,6 +157,7 @@ public class Menu {
         int teamMembers = input.nextInt();
         Teams ole = new Teams(teamName, teamMembers);
         teams.add(ole);
+        teamRepo.create(ole);
         System.out.println("You're new team: " + ole);
     }
 
@@ -281,5 +286,15 @@ public class Menu {
             System.out.println(team);
         }
 
+    }
+
+    public static void deleteTeam(Scanner input, ArrayList<Teams> teams){
+        System.out.println("Type the number of the team you want to remove: ");
+        for(int i = 0; i< teams.size();i++){
+            System.out.println(i+1+": "+teams.get(i));
+        }
+        int teamNumber = input.nextInt();
+        Teams team = teams.remove(teamNumber-1);
+        teamRepo.delete(team.getTeamid());
     }
 }
