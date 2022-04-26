@@ -70,7 +70,7 @@ public class FileIOMatch implements FileIO<Match>{
                     int matchDate = lineScanner.nextInt();
                     lineScanner.next();
                     int matchTime = lineScanner.nextInt();
-                    Match loadedMatch = new Match(teamOne, teamTwo,  matchMonth,  matchDate, matchTime);
+                    Match loadedMatch = new Match(matchMonth,  matchDate, matchTime, teamOne, teamTwo);
                     matches.add(loadedMatch);
                 }
             }

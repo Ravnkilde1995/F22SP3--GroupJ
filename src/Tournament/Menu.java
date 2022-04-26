@@ -226,7 +226,7 @@ public class Menu {
         int matchMonth = input.nextInt();
         System.out.println("Enter time of match start: ");
         int matchTime = input.nextInt();
-        Match newMatch = new Match(teamOne, teamTwo, matchMonth, matchDate, matchTime);
+        Match newMatch = new Match(matchMonth, matchDate, matchTime, teamOne, teamTwo);
         matches.add(newMatch);
         System.out.println(newMatch);
     }

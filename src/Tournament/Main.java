@@ -18,6 +18,7 @@ public class Main {
 
         Menu.teamRepo = new TeamRepo();
         Teams testTeam = new Teams("ole", 4, 5,2);
+        Teams testTeam2 = new Teams ("søren", 4, 5, 2);
         Menu.teamRepo.create(testTeam);
         teams = Menu.teamRepo.readAll();
         System.out.println(teams);
@@ -27,6 +28,12 @@ public class Main {
         playerRepo.create(testPlayer);
         players = playerRepo.readAll();
         System.out.println(players);
+
+        MatchRepo matchRepo = new MatchRepo();
+        Match testMatch = new Match(10,5,10, 1, 2);
+        matchRepo.create(testMatch);
+        matches = matchRepo.readAll();
+        System.out.println(matches);
 
         FileIOTeams teamsIO = new FileIOTeams();
         teams=teamsIO.loadData();
