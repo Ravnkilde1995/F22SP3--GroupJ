@@ -16,24 +16,33 @@ public class Main {
 
         DBConnection.createConnection();
 
+        /*
+
         Menu.teamRepo = new TeamRepo();
         Teams testTeam = new Teams("ole", 4, 5,2);
         Teams testTeam2 = new Teams ("søren", 4, 5, 2);
         Menu.teamRepo.create(testTeam);
         teams = Menu.teamRepo.readAll();
-        System.out.println(teams);
+
 
         PlayerRepo playerRepo = new PlayerRepo();
         Player testPlayer = new Player("Jane","Doe",30);
         playerRepo.create(testPlayer);
         players = playerRepo.readAll();
-        System.out.println(players);
 
-        MatchRepo matchRepo = new MatchRepo();
+
+        Menu.matchRepo = new MatchRepo();
         Match testMatch = new Match(10,5,10, 1, 2);
-        matchRepo.create(testMatch);
-        matches = matchRepo.readAll();
-        System.out.println(matches);
+        Menu.matchRepo.create(testMatch);
+        matches = Menu.matchRepo.readAll();
+
+
+        Menu.tournamentRepo = new TournamentRepo();
+        Tournament testTournament = new Tournament(10, 12, "marts", "ole");
+        Menu.tournamentRepo.create(testTournament);
+        tournaments = Menu.tournamentRepo.readAll();
+
+         */
 
         FileIOTeams teamsIO = new FileIOTeams();
         teams=teamsIO.loadData();

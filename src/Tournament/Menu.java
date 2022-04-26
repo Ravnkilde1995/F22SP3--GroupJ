@@ -10,6 +10,9 @@ public class Menu {
     //**********
    static ArrayList<Teams> teamsInTournament = new ArrayList<Teams>();
    static TeamRepo teamRepo;
+   static TournamentRepo tournamentRepo;
+   static MatchRepo matchRepo;
+
 
    public static void mainMenu(Scanner input, ArrayList<Teams> teams, ArrayList<Match> matches, ArrayList<Tournament> tournaments) {
 
@@ -228,6 +231,7 @@ public class Menu {
         int matchTime = input.nextInt();
         Match newMatch = new Match(matchMonth, matchDate, matchTime, teamOne, teamTwo);
         matches.add(newMatch);
+        matchRepo.create(newMatch);
         System.out.println(newMatch);
     }
 
@@ -236,6 +240,17 @@ public class Menu {
             System.out.println(matches.get(i));
         }
     }
+
+    /*
+    public static void deleteMatch(Scanner input, ArrayList<Match> matches){
+        System.out.println("Type the number of the team you want to remove: ");
+        for(int i = 0; i< matches.size();i++){
+            System.out.println(i+1+": "+matches.get(i));
+        }
+        int teamNumber = input.nextInt();
+        Match matchesTest = matches.remove(teamNumber-1);
+        matchRepo.delete(matchesTest.getTeamid());
+    }*/
 
     public static void createTournament(Scanner input, ArrayList<Tournament> tournaments) {
         System.out.println("Type tournament name");
@@ -248,6 +263,7 @@ public class Menu {
         int endTime = input.nextInt();
         Tournament tournament1 = new Tournament(startTime, endTime, date, tournamentName);
         tournaments.add(tournament1);
+        tournamentRepo.create(tournament1);
     }
 
     public static void addTeamToTournament(Scanner input, ArrayList<Teams> teams){
@@ -297,4 +313,5 @@ public class Menu {
         Teams team = teams.remove(teamNumber-1);
         teamRepo.delete(team.getTeamid());
     }
+
 }

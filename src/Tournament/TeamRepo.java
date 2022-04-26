@@ -61,7 +61,6 @@ public class TeamRepo implements Repository <Teams>{
         catch(Exception e){
             e.printStackTrace();
         }
-
     }
 
 
@@ -75,7 +74,6 @@ public class TeamRepo implements Repository <Teams>{
         }
         catch(Exception e){
             e.printStackTrace();
-
         }
     }
 }
