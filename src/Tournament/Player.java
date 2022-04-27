@@ -51,6 +51,10 @@ public class Player {
         this.age = age;
     }
 
+    public int getPlayerid() {
+        return playerid;
+    }
+
     @Override
     public String toString() {
         return "Player{" +

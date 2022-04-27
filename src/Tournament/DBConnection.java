@@ -10,7 +10,7 @@ public class DBConnection {
     public static void createConnection()  {
 
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost/footballtournament", "root", "pllghp1d");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost/footballtournament", "root", "hng57tca");
         } catch(Exception e) {
             e.printStackTrace();
         }

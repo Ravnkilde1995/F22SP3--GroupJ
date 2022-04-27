@@ -12,9 +12,10 @@ public class Menu {
    static TeamRepo teamRepo;
    static TournamentRepo tournamentRepo;
    static MatchRepo matchRepo;
+   static PlayerRepo playerRepo;
 
 
-   public static void mainMenu(Scanner input, ArrayList<Teams> teams, ArrayList<Match> matches, ArrayList<Tournament> tournaments) {
+   public static void mainMenu(Scanner input, ArrayList<Teams> teams, ArrayList<Match> matches, ArrayList<Tournament> tournaments, ArrayList<Player> players) {
 
         int answer = 1;
 
@@ -22,10 +23,10 @@ public class Menu {
             System.out.println("GruppeJ´s fodboldtunering");
             System.out.println("****************************");
             System.out.println("Press 1 for \"Team menu\"");
-            System.out.println("Press 2 for \"Tournament menu\"");
-            System.out.println("Press 3 for \"Match menu\"");
+            System.out.println("Press 2 for \"Player menu\"");
+            System.out.println("Press 3 for \"Tournament menu\"");
+            System.out.println("Press 4 for \"Match menu\"");
             System.out.println("Press 0 to terminate the program");
-
             answer = input.nextInt();
 
             switch (answer) {
@@ -33,9 +34,12 @@ public class Menu {
                     teamMenu(input, teams);
                     break;
                 case 2:
-                    tournamentMenu(input, teams, tournaments);
+                    playerMenu(input, players, teams);
                     break;
                 case 3:
+                    tournamentMenu(input, teams, tournaments);
+                    break;
+                case 4:
                     matchMenu(input, matches, teams);
                     break;
                 case 0:
@@ -153,6 +157,38 @@ public class Menu {
         }
     }
 
+    public static void playerMenu(Scanner input, ArrayList<Player> players, ArrayList<Teams> teams) {
+
+        int answer = 1;
+
+        while (answer != 0) {
+            System.out.println("Player menu");
+            System.out.println("****************************");
+            System.out.println("Press 1 to create a player");
+            System.out.println("Press 2 to add a player to a team");
+            System.out.println("Press 3 to delete a player");
+            System.out.println("Press 0 to terminate the program");
+
+            answer = input.nextInt();
+
+            switch (answer) {
+                case 1:
+                    createPlayer(input, players);
+                    break;
+                case 2:
+                    addPlayerToTeam(input, players, teams);
+                    break;
+                case 3:
+                    deletePlayer(input, players);
+                    break;
+                case 0:
+                    System.out.println("Returning to main menu...");
+                    break;
+            }
+        }
+    }
+
+
     public static void createTeam(Scanner input, ArrayList<Teams> teams) {
         System.out.println("Input team name: ");
         String teamName = input.next();
@@ -160,8 +196,10 @@ public class Menu {
         int teamMembers = input.nextInt();
         Teams ole = new Teams(teamName, teamMembers);
         teams.add(ole);
-        teamRepo.create(ole);
         System.out.println("You're new team: " + ole);
+        teamRepo.create(ole);
+        teams=teamRepo.readAll();
+
     }
 
     public static void addPointsToTeam(Scanner input, ArrayList<Teams> teams) {
@@ -312,6 +350,48 @@ public class Menu {
         int teamNumber = input.nextInt();
         Teams team = teams.remove(teamNumber-1);
         teamRepo.delete(team.getTeamid());
+    }
+
+    public static void createPlayer(Scanner input, ArrayList<Player> players) {
+        System.out.println("Input first name of player: ");
+        String firstName = input.next();
+        System.out.println("Input last name of player: ");
+        String lastName = input.next();
+        System.out.println("Input age of player: ");
+        int age = input.nextInt();
+        Player ole = new Player(firstName, lastName, age);
+        players.add(ole);
+        System.out.println("Your new player: " + ole);
+        playerRepo.create(ole);
+        players=playerRepo.readAll();
+
+    }
+
+    public static void addPlayerToTeam(Scanner input, ArrayList<Player> players, ArrayList<Teams> teams){
+        System.out.println("Type the number of the team you want to add a player to: ");
+        for (int i = 0; i < teams.size(); i++) {
+            System.out.println(i + 1 + ": " + teams.get(i));
+        }
+        int teamNumber = input.nextInt();
+        Teams selectedTeam = teams.get(teamNumber - 1);
+
+        System.out.println("Type the number of the player you want to add to the team: ");
+        for (int i = 0; i < players.size(); i++) {
+            System.out.println(i + 1 + ": " + players.get(i));
+        }
+        int playerNumber = input.nextInt();
+        Player selectedPlayer = players.get(playerNumber - 1);
+        selectedTeam.players.add(selectedPlayer);
+    }
+
+    public static void deletePlayer(Scanner input, ArrayList<Player> players){
+        System.out.println("Type the number of the player you want to remove: ");
+        for(int i = 0; i< players.size();i++){
+            System.out.println(i+1+": "+players.get(i));
+        }
+        int playerNumber = input.nextInt();
+        Player player = players.remove(playerNumber-1);
+        playerRepo.delete(player.getPlayerid());
     }
 
 }

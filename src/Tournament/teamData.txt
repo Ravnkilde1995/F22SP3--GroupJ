@@ -6,3 +6,4 @@ Teamname: Oliver Members: 2 Goals: 0 Points: 0
 Teamname: Thor Members: 5 Goals: 0 Points: 0
 Teamname: agurk Members: 2 Goals: 0 Points: 0
 Teamname: banan Members: 3 Goals: 0 Points: 0
+Teamname: test5 Members: 3 Goals: 0 Points: 0

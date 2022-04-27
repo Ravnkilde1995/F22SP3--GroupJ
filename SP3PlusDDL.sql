@@ -32,10 +32,12 @@ foreign key(teamoneid) references teams(teamid),
 foreign key(teamtwoid) references teams(teamid)
 );
 
-create table if not exists Player(
+create table if not exists Players(
 playerID int primary key auto_increment,
+teamid int,
 firstName varchar(45),
 lastName varchar(45),
-age int
+age int,
+foreign key (teamid) references teams(teamid)
 );
 

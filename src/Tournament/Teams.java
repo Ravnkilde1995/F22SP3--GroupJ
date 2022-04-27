@@ -6,6 +6,8 @@ import java.util.Scanner;
 public class Teams implements Comparable<Teams> {
     //Fields
     // ******************
+   ArrayList<Player> players = new ArrayList<Player>();
+
     private String teamName;
     private int teamid;
     private int teamMembers;
