@@ -68,6 +68,10 @@ public class Teams implements Comparable<Teams> {
         return teamid;
     }
 
+    public void setTeamMembers(int teamMembers) {
+        this.teamMembers = teamMembers;
+    }
+
     @Override
     public String toString() {
         return "All teams: " +

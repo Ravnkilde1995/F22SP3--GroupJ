@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import static Tournament.DBConnection.connection;
 
+// Natasja
+
 public class TournamentRepo implements Repository<Tournament>{
     @Override
     public ArrayList<Tournament> readAll() {

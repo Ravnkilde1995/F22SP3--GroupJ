@@ -8,6 +8,8 @@ import java.util.Scanner;
 
 import static Tournament.DBConnection.connection;
 
+
+
 public class PlayerMenu {
 
     static PlayerRepo playerRepo;
@@ -65,10 +67,13 @@ public class PlayerMenu {
     public static void addPlayerToTeam(Scanner input, ArrayList<Player> players, ArrayList<Teams> teams) {
         System.out.println("Type the number of the team you want to add a player to: ");
         for (int i = 0; i < teams.size(); i++) {
-            System.out.println(i + 1 + ": " + teams.get(i));
+            if(teams.get(i).getTeamMembers()<=3) {
+                System.out.println(i + 1 + ": " + teams.get(i));
+            }
         }
         int teamNumber = input.nextInt();
         Teams selectedTeam = teams.get(teamNumber - 1);
+        selectedTeam.setTeamMembers(selectedTeam.getTeamMembers()+1);
 
         System.out.println("Type the number of the player you want to add to the team: ");
         for (int i = 0; i < players.size(); i++) {
@@ -76,6 +81,7 @@ public class PlayerMenu {
         }
         int playerNumber = input.nextInt();
         Player selectedPlayer = players.get(playerNumber - 1);
+        players.remove(selectedPlayer);
         selectedTeam.players.add(selectedPlayer);
     }
 

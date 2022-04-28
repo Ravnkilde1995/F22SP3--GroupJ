@@ -1,6 +1,9 @@
 package Tournament;
 
 public class Player {
+
+    // fælles
+
     //Fields
     // ******************
     int playerid;
