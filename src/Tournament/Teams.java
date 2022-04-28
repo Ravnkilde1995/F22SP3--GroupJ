@@ -70,12 +70,11 @@ public class Teams implements Comparable<Teams> {
 
     @Override
     public String toString() {
-        return "Teams{" +
-                "teamName='" + teamName + '\'' +
-                ", teamMembers=" + teamMembers +
-                ", numberOfGoals=" + numberOfGoals +
-                ", points=" + points +
-                '}';
+        return "All teams: " +
+                "teamName= " + teamName +
+                ", teamMembers= " + teamMembers +
+                ", numberOfGoals= " + numberOfGoals +
+                ", points= " + points;
     }
 
     @Override

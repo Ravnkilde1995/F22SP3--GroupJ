@@ -79,12 +79,11 @@ public class Match {
 
     @Override
     public String toString() {
-        return "Match{" +
-                ", matchDate=" + matchDate +
+        return "Upcoming matches: " +
+                "matchDate=" + matchDate +
                 ", matchTime=" + matchTime +
                 ", matchMonth=" + matchMonth +
                 ", teamOneID=" + teamOneID +
-                ", teamTwoID=" + teamTwoID +
-                '}';
+                ", teamTwoID=" + teamTwoID;
     }
 }

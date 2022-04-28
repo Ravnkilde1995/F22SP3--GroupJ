@@ -1,13 +1,19 @@
 @startuml
 
+Main --> "has a " DBConnection
 Main --> "has a " Menu
-Menu --> "has a " Tournament
-Menu --> "has a " Teams
-Menu --> "has a " Match
-Main --> "has a " FileIO
-FileIO --> "has a"FileIOTournament
-FileIO --> "has a" FileIOMatch
-FileIO --> "has a"FileIOTeams
+Menu --> "has a " TournamentMenu
+Menu --> "has a " TeamMenu
+Menu --> "has a " PlayerMenu
+Menu --> "has a " MatchMenu
+TeamMenu --> "has a " Teams
+MatchMenu --> "has a " Match
+PlayerMenu --> "has a " Player
+TournamentMenu --> "has a " Tournament
+Repository --> "has a " TeamRepo
+Repository --> "has a " TournamentRepo
+Repository --> "has a " PlayerRepo
+Repository --> "has a " MatchRepo
 
 Class Main {
 - Scanner input
@@ -22,27 +28,59 @@ Class Main {
 + teamsIO.saveData(teams);
 + tournamentIO.saveData(tournaments);
 + matchIO.saveData(matches)
+}
 
+class DBConnection {
++ static Connection connection;
++ void createConnection()
 }
 
 Class Menu {
+static ArrayList<Teams> teamsInTournament
+static TeamRepo teamRepo
+static TournamentRepo tournamentRepo
+static MatchRepo matchRepo
+static PlayerRepo playerRepo
 + void mainMenu()
-+ void teamMenu()
-+ void tournamentMenu()
-+ void matchMenu()
-+ void createTeam()
-+ void addPointsToTeam()
-+ void addGoalsToTeam()
-+ void showAllTeams()
-+ void showPlacement()
-+ void createMatch()
-+ void showAllMatches()
-+ void createTournament()
-+ void addTeamToTournament()
-+ void removeTeamFromTournament()
-+ void showTournaments()
-+ void showTeamsAddedToTournament()
+}
 
+class TournamentMenu {
++ void tournamentMenu(Scanner input, ArrayList<Teams> teams, ArrayList<Tournament> tournaments)
++ void createTournament(Scanner input, ArrayList<Tournament> (tournaments)
++ void addTeamToTournament(startTime, endTime, date, tournamentName)
++ void removeTeamFromTournament(Scanner input)
++ void showTournaments(ArrayList<Tournament> tournaments)
++ void showTeamsAddedToTournament()
++ void showPlacement(ArrayList<Teams> teams)
++ void deleteTournament(Scanner input, ArrayList<Tournament> tournaments)
+}
+
+class TeamMenu {
+static TeamRepo teamRepo;
++ void teamMenu(Scanner input, ArrayList<Teams> teams)
++ void createTeam(Scanner input, ArrayList<Teams> teams)
++ void addPointsToTeam(Scanner input, ArrayList<Teams> teams)
++ void addGoalsToTeam(Scanner input, ArrayList<Teams> teams)
++ void showAllTeams(ArrayList<Teams> teams)
++ void deleteTeam(Scanner input, ArrayList<Teams> teams)
++ void searchForTeams(Scanner input, ArrayList<Teams> teams)
+}
+
+class PlayerMenu {
+static PlayerRepo playerRepo;
++ void playerMenu(Scanner input, ArrayList<Player> players, ArrayList<Teams> teams)
++ void createPlayer(Scanner input, ArrayList<Player> players)
++ void addPlayerToTeam(Scanner input, ArrayList<Player> players, ArrayList<Teams> teams)
++ void deletePlayer(Scanner input, ArrayList<Player> players)
++ void searchForPlayer(Scanner input, ArrayList<Player> players)
+}
+
+class MatchMenu {
+static MatchRepo matchRepo;
++ void matchMenu(Scanner input, ArrayList<Match> matches, ArrayList<Teams> teams)
++ void createMatch(Scanner input, ArrayList<Match> matches, ArrayList<Teams> teams)
++ void showAllMatches(ArrayList<Match> matches)
++ void deleteMatch(Scanner input, ArrayList<Match> matches)
 }
 
 Class Tournament {
@@ -89,24 +127,46 @@ Class Match {
 + String toString()
 }
 
-interface FileIO{
-+ void saveData(ArrayList<T> arrayList)
-+ ArrayList<T> loadData()
+Class Player {
+- int playerid
+- String firstName
+- String lastName
+- int age
++ String getFirstName()
++ String getLastName()
++ int getAge()
++ int getPlayerid()
++ String toString()
 }
 
-Class FileIOTeams{
-+ void saveData(ArrayList<Teams> teams)
-+ ArrayList<Teams>teams loadData()
+interface Repository{
++ ArrayList<T> readAll()
++ void create(T t)
++ void delete(int id)
 }
 
-Class FileIOTournament{
-+ void saveData(ArrayList<Tournament> tournaments)
-+ ArrayList<Tournament>tournaments loadData()
+Class TeamRepo{
++ ArrayList<Teams> readAll()
++ void create(Teams teams)
++ void delete(int id)
 }
 
-Class FileIOMatch{
-+ void saveData(ArrayList<Match> matches)
-+ ArrayList<Match> matches loadData()
+Class TournamentRepo{
++ ArrayList<Tournament> readAll()
++ void create(Tournament tournaments)
++ void delete(int id)
+}
+
+Class MatchRepo{
++ ArrayList<Match> readAll()
++ void create(Match matches)
++ void delete(int id)
+}
+
+Class PlayerRepo{
++ ArrayList<Player> readAll()
++ void create(Player players)
++ void delete(int id)
 }
 
 @enduml

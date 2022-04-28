@@ -29,24 +29,12 @@ public class Main {
         tournaments = TournamentMenu.tournamentRepo.readAll();
 
 
-        FileIOTeams teamsIO = new FileIOTeams();
-        teams=teamsIO.loadData();
-
-        FileIOTournament tournamentIO = new FileIOTournament();
-        tournaments=tournamentIO.loadData();
-
-        FileIOMatch matchIO = new FileIOMatch(teams);
-        matches=matchIO.loadData();
-
         Menu.mainMenu(input, teams, matches, tournaments, players);
         TeamMenu.teamMenu(input, teams);
         TournamentMenu.tournamentMenu(input, teams, tournaments);
         PlayerMenu.playerMenu(input, players, teams);
         MatchMenu.matchMenu(input, matches, teams);
 
-        teamsIO.saveData(teams);
-        tournamentIO.saveData(tournaments);
-        matchIO.saveData(matches);
 
     }
 

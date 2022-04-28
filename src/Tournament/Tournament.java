@@ -41,11 +41,10 @@ public class Tournament {
 
     @Override
     public String toString() {
-        return "Tournament{" +
-                "startTime=" + startTime +
-                ", endTime=" + endTime +
-                ", date='" + date + '\'' +
-                ", tournamentName='" + tournamentName + '\'' +
-                '}';
+        return "All tournaments: " +
+                "tournamentName= " + tournamentName +
+                ", startTime= " + startTime +
+                ", endTime= " + endTime +
+                ", date= " + date;
     }
 }

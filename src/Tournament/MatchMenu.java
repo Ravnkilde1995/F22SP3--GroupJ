@@ -68,9 +68,11 @@ public class MatchMenu {
         }
     }
 
+
     public static void deleteMatch(Scanner input, ArrayList<Match> matches) {
         System.out.println("Type the ID of the match you want to remove: ");
         int teamNumber = input.nextInt();
         matchRepo.delete(teamNumber);
     }
+
 }

@@ -23,6 +23,7 @@ public class TournamentMenu {
             System.out.println("Press 4 to show all tournaments");
             System.out.println("Press 5 to remove a team from tournament");
             System.out.println("Press 6 to show all teams in tournament");
+            System.out.println("Press 7 to delete a tournament");
             System.out.println("Press 0 to return to main menu");
 
             answer = input.nextInt();
@@ -45,6 +46,9 @@ public class TournamentMenu {
                     break;
                 case 6:
                     showTeamsAddedToTournament();
+                    break;
+                case 7:
+                    deleteTournament(input, tournaments);
                     break;
                 case 0:
                     System.out.println("returning to main menu...");
@@ -113,5 +117,11 @@ public class TournamentMenu {
             Teams team = teams.get(i);
             System.out.println(i + 1 + ": " + team);
         }
+    }
+
+    public static void deleteTournament(Scanner input, ArrayList<Tournament> tournaments) {
+        System.out.println("Type the ID of the team you want to remove: ");
+        int tournamentNumber = input.nextInt();
+        tournamentRepo.delete(tournamentNumber);
     }
 }

@@ -37,7 +37,14 @@ public class TournamentRepo implements Repository<Tournament>{
 
     @Override
     public void delete(int id) {
-
+        try{
+            String sql = "DELETE FROM tournament WHERE tournamentID = " + id;
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.executeUpdate();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override
