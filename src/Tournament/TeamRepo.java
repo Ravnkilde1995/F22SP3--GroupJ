@@ -68,9 +68,9 @@ public class TeamRepo implements Repository <Teams>{
     public void delete(int id) {
 
         try{
-            String sql = "DELETE FROM teams WHERE teamid = ?";
+            String sql = "DELETE FROM teams WHERE teamid = " + id;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1,id);
+            preparedStatement.executeUpdate();
         }
         catch(Exception e){
             e.printStackTrace();

@@ -61,13 +61,12 @@ public class PlayerRepo implements Repository <Player>{
     public void delete(int id) {
 
         try{
-            String sql = "DELETE FROM players WHERE playerid = ?";
+            String sql = "DELETE FROM players WHERE playerID = " + id;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1,id);
+            preparedStatement.executeUpdate();
         }
         catch(Exception e){
             e.printStackTrace();
-
         }
     }
 }

@@ -16,18 +16,17 @@ public class Main {
 
         DBConnection.createConnection();
 
-        Menu.teamRepo = new TeamRepo();
-        teams = Menu.teamRepo.readAll();
+        TeamMenu.teamRepo = new TeamRepo();
+        teams = TeamMenu.teamRepo.readAll();
 
-        Menu.playerRepo = new PlayerRepo();
-        players = Menu.playerRepo.readAll();
+        PlayerMenu.playerRepo = new PlayerRepo();
+        players = PlayerMenu.playerRepo.readAll();
 
-        Menu.matchRepo = new MatchRepo();
-        matches = Menu.matchRepo.readAll();
+        MatchMenu.matchRepo = new MatchRepo();
+        matches = MatchMenu.matchRepo.readAll();
 
-        Menu.tournamentRepo = new TournamentRepo();
-        tournaments = Menu.tournamentRepo.readAll();
-
+        TournamentMenu.tournamentRepo = new TournamentRepo();
+        tournaments = TournamentMenu.tournamentRepo.readAll();
 
 
         FileIOTeams teamsIO = new FileIOTeams();
@@ -40,6 +39,10 @@ public class Main {
         matches=matchIO.loadData();
 
         Menu.mainMenu(input, teams, matches, tournaments, players);
+        TeamMenu.teamMenu(input, teams);
+        TournamentMenu.tournamentMenu(input, teams, tournaments);
+        PlayerMenu.playerMenu(input, players, teams);
+        MatchMenu.matchMenu(input, matches, teams);
 
         teamsIO.saveData(teams);
         tournamentIO.saveData(tournaments);
